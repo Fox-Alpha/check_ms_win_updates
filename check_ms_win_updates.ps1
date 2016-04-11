@@ -18,13 +18,16 @@
 #   PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public 
 #   License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
+
 $WsusStruct = New-object PSObject -Property @{
     CheckStart = (Get-Date -Format 'yyyy/MM/dd HH:mm:ss.fff');
     CheckEnd = '';
     CheckDuration = '';
     Exitcode = 3;
     Method = 'UpdateSearcher';
-    UpdateCacheFile = 'C:\Program Files\NSClient++\scripts\powershell\cache\check_ms_win_updates_cache.xml';
+    UpdateCacheFile = 'C:\temp\scripts\powershell\cache\check_ms_win_updates_cache.xml';
+    # UpdateCacheFile = 'C:\Program Files\NSClient-0.4.3.143\scripts\powershell\cache\check_ms_win_updates_cache.xml';
     UpdateCacheExpireHours = 24;
     LastSuccesTime = '';
     DaysBeforeWarning = 120;
@@ -195,9 +198,15 @@ Function Get-LocalTime {
     Return $LocalTime
 }
 Function Search-WithUpdateSearcher { 
-    if (!(Test-path -Path 'C:\Program Files\NSClient++\scripts\powershell\cache')){
-        New-Item -Path 'C:\Program Files\NSClient++\scripts\powershell\cache' -Type directory -Force | Out-Null
+
+    if (!(Test-path -Path 'C:\temp\scripts\powershell\cache')){
+        New-Item -Path 'C:\temp\scripts\powershell\cache' -Type directory -Force | Out-Null
     }
+
+
+#    if (!(Test-path -Path 'C:\Program Files\NSClient-0.4.3.143\scripts\powershell\cache')){
+#        New-Item -Path 'C:\Program Files\NSClient-0.4.3.143\scripts\powershell\cache' -Type directory -Force | Out-Null
+#    }
 
     $LastSuccessTimeFolder = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Install'
     if (Test-Path $LastSuccessTimeFolder) {
