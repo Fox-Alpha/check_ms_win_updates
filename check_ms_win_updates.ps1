@@ -146,7 +146,7 @@ function Write-Log {
             $Socket.Close()
         }
         catch {
-            Write-Host "${Now}: Error: Something went wrong while trying to send message to Logstash server `"$Log`"."
+            Write-Host "${Now}: Error: Something went wrong while trying to send message to Logstash server `"$Log`"."
         }
         Write-Host "${Now}: ${Severity}: Ip: $Ip Port: $Port JsonString: $JsonString"
     }
